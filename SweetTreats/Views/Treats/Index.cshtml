@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+
+@using SweetTreats.Models;
+
+<h1>Treats</h1>
+
+@if (@Model.Count == 0)
+{
+  <h3>No treats have been made yet.</h3>
+}
+else
+{
+  <ul>
+    @foreach (Treat treat in Model)
+    {
+     <li>@Html.ActionLink($"{treat.Name}","Details",new { id = treat.TreatId}) </li>
+    }
+  </ul>
+}
+
+<p>@Html.ActionLink("Make a Treat", "Create")</p>
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
