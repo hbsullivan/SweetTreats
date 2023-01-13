@@ -48,5 +48,29 @@ namespace SweetTreats.Controllers
                             .FirstOrDefault(treat => treat.TreatId == id);
       return View(thisTreat);
     }
+
+    public ActionResult Edit(int id)
+    {
+      Treat thisTreat = _db.Treats
+                            .Include(treat=> treat.JoinEntities)
+                            .ThenInclude(join => join.Flavor)
+                            .FirstOrDefault(treat => treat.TreatId == id);
+      return View(thisTreat);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Treat treat)
+    {
+      if (!ModelState.IsValid)
+      {
+        return View();
+      }
+      else
+      {
+      _db.Treats.Update(treat);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+      }
+    }
   }
 }
