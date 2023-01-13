@@ -1,0 +1,35 @@
+@{
+  Layout = "_Layout";
+}
+@using SweetTreats.Models;
+
+<h1>Pierre's Sweet Treats</h1>
+
+<hr>
+
+<h4>Flavors</h4>
+@if (Model["flavors"].Length == 0)
+{
+  <p>No flavors have been added yet!</p>
+} 
+<ul>
+  @foreach (Flavor fla in Model["flavors"])
+  {
+    <li>@Html.ActionLink(@fla.Name, "Details", "Flavors", new { id = @fla.FlavorId})</li>
+  }
+</ul>
+
+<h4>Treats</h4>
+@if (Model["treats"].Length == 0)
+{
+  <p>No treats have been made yet!</p>
+} 
+<ul>
+  @foreach (Treat tre in Model["treats"])
+  {
+    <li>@Html.ActionLink(@tre.Name, "Details", "Treats", new { id = @tre.TreatId})</li>
+  }
+</ul>
+
+<p>@Html.ActionLink("Add Flavors", "Index", "Flavors")</p>
+<p>@Html.ActionLink("Make a Treat", "Index", "Treats")</p>
