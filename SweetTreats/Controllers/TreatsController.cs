@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using SweetTreats.Models;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SweetTreats.Controllers
 {
+  [Authorize]
   public class TreatsController : Controller
   {
     private readonly SweetTreatsContext _db;
@@ -15,6 +17,7 @@ namespace SweetTreats.Controllers
       _db = db;
     }
 
+    [AllowAnonymous]
     public ActionResult Index()
     {
       return View(_db.Treats.ToList());
@@ -40,6 +43,7 @@ namespace SweetTreats.Controllers
       }
     }
 
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       Treat thisTreat = _db.Treats
