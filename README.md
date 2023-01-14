@@ -14,7 +14,6 @@
 * _MySql_
 * _Identity_
 
-
 ## Description
 
 _This program allows for the user to keep track of their treats and their flavors. This application also has login/logout functionality and requires an account for certain functionality._
